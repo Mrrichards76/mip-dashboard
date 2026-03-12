@@ -3,12 +3,17 @@ import sqlite3
 import pandas as pd
 import plotly.graph_objects as go
 
+conn = sqlite3.connect('mip_live.db')
+cursor = conn.cursor()
+
+startups_df = pd.read_sql_query("SELECT * FROM startups", conn)
 st.set_page_config(page_title="Momentum Intelligence Platform", layout="wide")
 
 st.title("Momentum Intelligence Platform")
 
 # Connect to database
 conn = sqlite3.connect("live.db")
+
 df = pd.read_sql_query("SELECT * FROM startups", conn)
 
 # Convert trajectory string to list
