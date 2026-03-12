@@ -12,7 +12,7 @@ st.set_page_config(page_title="Momentum Intelligence Platform", layout="wide")
 st.title("Momentum Intelligence Platform")
 
 # Connect to database
-conn = sqlite3.connect("live.db")
+conn = sqlite3.connect("mip_live.db")
 
 df = pd.read_sql_query("SELECT * FROM startups", conn)
 
