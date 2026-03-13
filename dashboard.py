@@ -58,7 +58,7 @@ for _, row in df.iterrows():
             y=trajectory,
             mode="lines",
             name=row["name"],
-            line=dict(color=color, width=3)
+            line=dict(color=color, width=3, shape="spline")
         )
     )
 
