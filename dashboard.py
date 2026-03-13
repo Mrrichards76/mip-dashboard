@@ -68,6 +68,11 @@ fig.update_layout(
     title="Startup Momentum Field"
 )
 
+fig.update_xaxes(
+    tickvals=[0,1,2,3],
+    ticktext=["Q1", "Q2", "Q3", "Q4"]
+)    
+
 st.plotly_chart(fig, use_container_width=True)
 
 st.subheader("Top Momentum Startups")
