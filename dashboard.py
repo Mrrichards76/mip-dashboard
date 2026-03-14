@@ -215,3 +215,4 @@ with footer[1]:
 
 with footer[2]:
     st.metric("Top Movers This Week", "12", "🔥")
+
