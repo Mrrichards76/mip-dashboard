@@ -1,5 +1,5 @@
 import streamlit as st
-import sqlite3 
+import sqlite3
 import pandas as pd
 import plotly.graph_objects as go
 
@@ -91,22 +91,28 @@ st.divider()
 fig = go.Figure()
 
 for idx, row in df.iterrows():
-    x_values = [0,1,2]  # Q1, Q2, Q3
+    x_values = [0, 1, 2]  # Q1, Q2, Q3
     y_values = row["trajectory"]
-    
-    hover_text = "<br>".join([f"{signal_emoji.get(s['signal'],'')} {s['signal'].replace('_',' ').title()}: {s['date']}" for s in row["signals"]])
-    
+
+    hover_text = "<br>".join([f"{signal_emoji.get(s['signal'], '')} {s['signal'].replace('_', ' ').title()}: {s['date']}" for s in row["signals"]])
+
     fig.add_trace(go.Scatter(
         x=x_values,
         y=y_values,
         mode="lines+markers",
         name=row["name"],
-        line=dict(color=colors.get(row["name"], "white"), width=4 if idx==0 else 2),
+        line=dict(color=colors.get(row["name"], "white"), width=4 if idx == 0 else 2),
         hovertemplate=f"<b>{row['name']}</b><br>Momentum: %{y}<br>{hover_text}<extra></extra>"
     ))
 
-fig.update_xaxes(tickvals=[0,1,2], ticktext=['Q1','Q2','Q3'])
-fig.update_layout(height=600, template="plotly_dark", title="Startup Momentum Field", plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)")
+fig.update_xaxes(tickvals=[0, 1, 2], ticktext=['Q1', 'Q2', 'Q3'])
+fig.update_layout(
+    height=600,
+    template="plotly_dark",
+    title="Startup Momentum Field",
+    plot_bgcolor="rgba(0,0,0,0)",
+    paper_bgcolor="rgba(0,0,0,0)"
+)
 st.plotly_chart(fig, use_container_width=True)
 
 # -----------------------------
@@ -115,20 +121,20 @@ st.plotly_chart(fig, use_container_width=True)
 st.subheader("Top Momentum Startups")
 for idx, row in top_companies.iterrows():
     temp = momentum_to_temperature(row["current_score"])
-    leader_emoji = "🏆" if idx==0 else ""
-    st.write(f"{leader_emoji} {idx+1}. {row['name']} | CS={row['current_score']} | Δ={row['change']} | {temp}")
+    leader_emoji = "🏆" if idx == 0 else ""
+    st.write(f"{leader_emoji} {idx + 1}. {row['name']} | CS={row['current_score']} | Δ={row['change']} | {temp}")
 
 # -----------------------------
 # Emerging Signals / Newly Detected
 # -----------------------------
 emerging_signals = [
-    {"name":"QuantumForge", "signal":"Media Mention", "date":"2026-01-25"},
-    {"name":"NovaAI", "signal":"Social Buzz", "date":"2026-02-15"}
+    {"name": "QuantumForge", "signal": "Media Mention", "date": "2026-01-25"},
+    {"name": "NovaAI", "signal": "Social Buzz", "date": "2026-02-15"}
 ]
 
 newly_detected = [
-    {"name":"NovaAI", "date":"2026-02-10"},
-    {"name":"YouTube", "date":"2026-03-11"}
+    {"name": "NovaAI", "date": "2026-02-10"},
+    {"name": "YouTube", "date": "2026-03-11"}
 ]
 
 col1, col2 = st.columns(2)
