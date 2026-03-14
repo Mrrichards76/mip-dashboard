@@ -102,7 +102,7 @@ for idx, row in df.iterrows():
         mode="lines+markers",
         name=row["name"],
         line=dict(color=colors.get(row["name"], "white"), width=4 if idx == 0 else 2),
-        hovertemplate=f"<b>{row['name']}</b><br>Momentum: %{y}<br>{hover_text}<extra></extra>"
+        hovertemplate=f"<b>{row['name']}</b><br>Momentum: %{{y}}<br>{hover_text}<extra></extra>"
     ))
 
 fig.update_xaxes(tickvals=[0, 1, 2], ticktext=['Q1', 'Q2', 'Q3'])
