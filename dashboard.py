@@ -157,7 +157,7 @@ with panel:
 
         #st.caption(
             #"Signals Detected: GitHub spikes, media buzz, hiring growth"
-        )
+        #)
 
 st.divider()
 
