@@ -155,7 +155,7 @@ with panel:
 
         st.plotly_chart(fig, width="stretch")
 
-        st.caption(
+        #st.caption(
             "Signals Detected: GitHub spikes, media buzz, hiring growth"
         )
 
