@@ -185,7 +185,7 @@ with lower[0]:
 
             with row[0]:
                 st.markdown(f"**{s['company']}**")
-                st.caption(s["signal_type"])#
+                #st.caption(s["signal_type"])
 
             with row[1]:
                 st.success("Active")
@@ -207,7 +207,7 @@ with lower[0]:
 
             with row[0]:
                 st.markdown(f"**{s[0]}**")
-                st.caption(s[1])#
+                #st.caption(s[1])
 
             with row[1]:
                 st.success(s[2])
@@ -233,7 +233,7 @@ with lower[1]:
 
             with row[0]:
                 st.markdown(f"**{n['company']}**")
-                st.caption(n["timestamp"])#
+                #st.caption(n["timestamp"])
 
             with row[1]:
                 st.button("Chart", key=n["company"]+"new")
@@ -252,7 +252,7 @@ with lower[1]:
 
             with row[0]:
                 st.markdown(f"**{n[0]}**")
-                st.caption(n[1])#
+                #st.caption(n[1])
 
             with row[1]:
                 st.button("Chart", key=n[0])
