@@ -156,7 +156,7 @@ with panel:
         st.plotly_chart(fig, width="stretch")
 
         #st.caption(
-            "Signals Detected: GitHub spikes, media buzz, hiring growth"
+            #"Signals Detected: GitHub spikes, media buzz, hiring growth"
         )
 
 st.divider()
