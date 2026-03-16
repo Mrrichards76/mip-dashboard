@@ -33,6 +33,18 @@ for repo in repos:
     timestamp = datetime.utcnow().isoformat()
     details = repo["html_url"]
 
+        # ---- Momentum Score Calculation ----
+    stars = repo.get("stargazers_count", 0)
+    forks = repo.get("forks_count", 0)
+    recent_activity_days = (datetime.utcnow() - parser.parse(repo["pushed_at"])).days
+    contributors = repo.get("contributors_count", 1)
+    has_docs = bool(repo.get("has_docs", False))
+    is_org = repo.get("owner_type", "") == "Organization"
+
+    momentum_score = calculate_momentum_score(
+        stars, forks, recent_activity_days, contributors, has_docs, is_org
+    )
+
     cursor.execute("""
         INSERT INTO signals
         (company, signal_type, source, strength, timestamp, details)
