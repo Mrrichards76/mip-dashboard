@@ -45,6 +45,15 @@ for repo in repos:
         stars, forks, recent_activity_days, contributors, has_docs, is_org
     )
 
+     cursor.execute("""
+        SELECT momentum_score FROM signals
+        WHERE company = ?
+        ORDER BY timestamp DESC
+        LIMIT 1
+    """, (company_name,))
+    result = cursor.fetchone()
+    previous_score = result[0] if result else 0
+
     cursor.execute("""
         INSERT INTO signals
         (company, signal_type, source, strength, timestamp, details)
