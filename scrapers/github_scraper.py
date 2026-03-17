@@ -36,7 +36,10 @@ for repo in repos:
         # ---- Momentum Score Calculation ----
     stars = repo.get("stargazers_count", 0)
     forks = repo.get("forks_count", 0)
-    recent_activity_days = (datetime.utcnow() - parser.parse(repo["pushed_at"])).days
+    from datetime import datetime, timezone
+    
+    recent_activity_days = (datetime.utcnow() - parser.parse(repo["pushed_at"])
+    ).days
     contributors = repo.get("contributors_count", 1)
     has_docs = bool(repo.get("has_docs", False))
     is_org = repo.get("owner_type", "") == "Organization"
