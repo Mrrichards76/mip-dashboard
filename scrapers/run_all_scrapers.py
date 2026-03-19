@@ -1,5 +1,10 @@
 import subprocess
+import os
 
-# Since run_all_scrapers.py is inside scrapers/, just call the scripts directly
+# Change working directory to the script's folder
+script_dir = os.path.dirname(os.path.abspath(__file__))
+os.chdir(script_dir)
+
+# Run the scrapers
 subprocess.run(["python", "github_scraper.py"])
 subprocess.run(["python", "angel_scraper.py"])
