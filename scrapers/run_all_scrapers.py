@@ -1,2 +1,4 @@
-!python scrapers/github_scraper.py
-!python scrapers/angel_scraper.py
+import subprocess
+
+subprocess.run(["python", "github_scraper.py"])
+subprocess.run(["python", "angel_scraper.py"])
