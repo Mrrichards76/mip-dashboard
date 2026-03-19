@@ -4,7 +4,7 @@
   "metadata": {
     "colab": {
       "provenance": [],
-      "authorship_tag": "ABX9TyO+ZvOqSeF7609eubPdvQ87",
+      "authorship_tag": "ABX9TyOUcUmJ41RxoOisa+THLYbb",
       "include_colab_link": true
     },
     "kernelspec": {
@@ -221,7 +221,7 @@
       "metadata": {
         "colab": {
           "base_uri": "https://localhost:8080/",
-          "height": 163
+          "height": 143
         },
         "id": "pNYVgc7Z3qw3",
         "outputId": "518ee8d2-f17b-4060-ed5b-469ba8435af3"
@@ -1691,7 +1691,7 @@
       "metadata": {
         "colab": {
           "base_uri": "https://localhost:8080/",
-          "height": 755
+          "height": 617
         },
         "id": "zXIHx4_xXymK",
         "outputId": "fdd359eb-c714-41f3-e75f-b05d4b3bd15c"
@@ -1816,7 +1816,7 @@
       "metadata": {
         "colab": {
           "base_uri": "https://localhost:8080/",
-          "height": 755
+          "height": 617
         },
         "id": "pHgmrtZQaLpS",
         "outputId": "fa3fd419-cf46-4b4c-cacd-e258d9bfbe20"
@@ -3277,7 +3277,7 @@
       "metadata": {
         "colab": {
           "base_uri": "https://localhost:8080/",
-          "height": 367
+          "height": 297
         },
         "id": "rgTtYfvTbhH3",
         "outputId": "7b5899d7-0ea7-4fd6-ef0c-16e92e43877f"
@@ -3783,6 +3783,375 @@
             "AngelList inserted: AngelCo1, 307.5, 1\n",
             "AngelList inserted: AngelCo2, 152.5, 0\n",
             "Integration test complete ✅\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!git clone https://github.com/Mrrichards76/mip-dashboard.git"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "fX18WfzQ10Sj",
+        "outputId": "9487237a-44c7-4a4f-ad97-91463a7c5a65"
+      },
+      "execution_count": 12,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Cloning into 'mip-dashboard'...\n",
+            "remote: Enumerating objects: 158, done.\u001b[K\n",
+            "remote: Counting objects: 100% (16/16), done.\u001b[K\n",
+            "remote: Compressing objects: 100% (6/6), done.\u001b[K\n",
+            "Receiving objects: 100% (158/158), 114.58 KiB | 3.18 MiB/s, done.\n",
+            "remote: Total 158 (delta 12), reused 10 (delta 10), pack-reused 142 (from 1)\u001b[K\n",
+            "Resolving deltas: 100% (60/60), done.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "%cd mip-dashboard"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "JgxLXYjG5MF1",
+        "outputId": "6406a099-05a0-46c7-c4ff-e050dffd1d65"
+      },
+      "execution_count": 13,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "/content/mip-dashboard\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!python github_scraper.py"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "UsJkWytN-QY8",
+        "outputId": "d6665598-1a5f-4286-8cc9-db9b7bba21d8"
+      },
+      "execution_count": 14,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "python3: can't open file '/content/mip-dashboard/github_scraper.py': [Errno 2] No such file or directory\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!ls"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "-8aZEsbX-321",
+        "outputId": "2768b8e5-37b6-4e6d-f05c-cba810338041"
+      },
+      "execution_count": 15,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "dashboard.py  mip_live.db  requirements.txt  scrapers\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "%cd scrapers"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "2QR0T7E3_QTv",
+        "outputId": "e2df895c-99dc-478d-a450-10c00b63de85"
+      },
+      "execution_count": 16,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "/content/mip-dashboard/scrapers\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!ls"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "B21wJTOO_aFW",
+        "outputId": "65e2e9a5-1502-41ca-ac06-88fafa3f5c3b"
+      },
+      "execution_count": 17,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "angel_scraper.py  breakout_engine.py  github_scraper.py\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!python github_scraper.py"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "rJjrohUJAPDG",
+        "outputId": "53e1c18a-0092-4cc3-8e85-5cd3cd29acf2"
+      },
+      "execution_count": 18,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Traceback (most recent call last):\n",
+            "  File \"/content/mip-dashboard/scrapers/github_scraper.py\", line 8, in <module>\n",
+            "    \"include_colab_link\": true\n",
+            "                          ^^^^\n",
+            "NameError: name 'true' is not defined. Did you mean: 'True'?\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!python run_all_scrapers.py"
+      ],
+      "metadata": {
+        "id": "8ZVE8AoNqbsc"
+      },
+      "execution_count": 23,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!python run_all_scrapers.py"
+      ],
+      "metadata": {
+        "id": "gX5eX99erqLd"
+      },
+      "execution_count": 27,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!python run_all_scrapers.py"
+      ],
+      "metadata": {
+        "id": "TrUVSRlbxCcI"
+      },
+      "execution_count": 28,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!pwd\n",
+        "!ls scrapers"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "WLYyxXnaxPxR",
+        "outputId": "513764af-a691-4f19-c569-ba7c57ad56e4"
+      },
+      "execution_count": 29,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "/content/mip-dashboard/scrapers\n",
+            "ls: cannot access 'scrapers': No such file or directory\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!ls"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "YG9OAglayoE3",
+        "outputId": "f4e5c7a1-ea11-4a9a-e4d1-6ddd64da1c80"
+      },
+      "execution_count": 30,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "angel_scraper.py  breakout_engine.py  github_scraper.py  run_all_scrapers.py\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!python run_all_scrapers.py"
+      ],
+      "metadata": {
+        "id": "j9Jiidybzeyg"
+      },
+      "execution_count": 31,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!python angel_scraper.py"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "5e9CNKB80FV3",
+        "outputId": "cc857687-f9b3-428d-ca9f-9270b870bc5b"
+      },
+      "execution_count": 32,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Traceback (most recent call last):\n",
+            "  File \"/content/mip-dashboard/scrapers/angel_scraper.py\", line 8, in <module>\n",
+            "    \"include_colab_link\": true\n",
+            "                          ^^^^\n",
+            "NameError: name 'true' is not defined. Did you mean: 'True'?\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!python angel_scraper.py"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "wdlc44-92_9Z",
+        "outputId": "c851bded-6e51-4aca-bb39-4f550717a9cc"
+      },
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "AngelCoA 0 0\n",
+            "AngelCoB 0 0\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!python run_all_scrapers.py"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "-PJNAFf33bGh",
+        "outputId": "117db793-64b8-46a8-cfb0-25589b54801d"
+      },
+      "execution_count": 2,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "  File \"/content/run_all_scrapers.py\", line 1\n",
+            "    !python github_scraper.py\n",
+            "    ^\n",
+            "SyntaxError: invalid syntax\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!python run_all_scrapers.py"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "F_bCX9S25Wmt",
+        "outputId": "ccb2a0de-7403-4622-e524-023153366f07"
+      },
+      "execution_count": 4,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Traceback (most recent call last):\n",
+            "  File \"/content/github_scraper.py\", line 11, in <module>\n",
+            "    cursor.execute(\"\"\"\n",
+            "    ^^^^^^\n",
+            "NameError: name 'cursor' is not defined\n",
+            "AngelCoA 0 0\n",
+            "AngelCoB 0 0\n"
           ]
         }
       ]
