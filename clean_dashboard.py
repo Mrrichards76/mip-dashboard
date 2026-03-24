@@ -1,0 +1,187 @@
+import streamlit as st
+import pandas as pd
+import plotly.graph_objects as go
+import numpy as np
+import sqlite3
+
+st.set_page_config(page_title="Momentum Intelligence Platform", layout="wide")
+
+# -----------------------------
+# DATABASE CONNECTION
+# -----------------------------
+
+conn = sqlite3.connect("mip_live.db")
+
+try:
+    signals_df = pd.read_sql("SELECT * FROM signals", conn)
+except:
+    signals_df = pd.DataFrame(columns=["company","signal_type","source","strength","timestamp","details"])
+
+conn.close()
+
+# -----------------------------
+# BUILD STARTUP LIST FROM SIGNALS (DYNAMIC ONLY)
+# -----------------------------
+
+startups = signals_df["company"].dropna().unique().tolist()
+
+# Momentum trajectory generator (temporary until scrapers run continuously)
+x = ["Q1","Q2","Q3","Q4"]
+
+data = {
+    s: np.cumsum(np.random.randint(5,20,4)) for s in startups
+}
+
+# -----------------------------
+# HEADER
+# -----------------------------
+
+st.title("Momentum Intelligence Platform (MIp)")
+
+# -----------------------------
+# TOP MOMENTUM LEADER CARD
+# -----------------------------
+
+leader_container = st.container()
+
+with leader_container:
+    col1, col2, col3 = st.columns([1,4,1])
+    with col2:
+        st.markdown("### Top Momentum Leader Today")
+        if startups:
+            leader = startups[0]
+        else:
+            leader = "No data yet"
+
+        leader_cols = st.columns([1,4,2])
+        with leader_cols[0]:
+            st.image("https://cdn-icons-png.flaticon.com/512/906/906175.png", width=60)
+        with leader_cols[1]:
+            st.markdown(f"## {leader}")
+            st.markdown("Score: **85**  \n Rising")
+        with leader_cols[2]:
+            sparkline = go.Figure()
+            sparkline.add_trace(go.Scatter(
+                y=np.cumsum(np.random.randint(0,5,20)),
+                mode="lines"
+            ))
+            sparkline.update_layout(
+                height=80,
+                margin=dict(l=0,r=0,t=0,b=0),
+                xaxis_visible=False,
+                yaxis_visible=False
+            )
+            st.plotly_chart(sparkline, width="stretch")
+
+st.divider()
+
+# -----------------------------
+# TOP MOMENTUM STARTUPS PANEL
+# -----------------------------
+
+panel = st.container()
+with panel:
+    header_cols = st.columns([4,1,1])
+    with header_cols[0]:
+        st.subheader("Top Momentum Startups")
+    with header_cols[1]:
+        st.button("🔥 Trending Badge")
+    with header_cols[2]:
+        st.button("Share")
+    layout = st.columns([1,4])
+
+# -----------------------------
+# FILTER SIDEBAR
+# -----------------------------
+
+    with layout[0]:
+        st.markdown("#### Filters")
+        st.markdown("**Show**")
+        st.radio("", ["All", "Top N", "Newly Detected"], label_visibility="collapsed")
+        st.markdown("**Sector**")
+        st.checkbox("AI")
+        st.checkbox("Dev Tools")
+        st.markdown("**Signals**")
+        st.checkbox("GitHub")
+        st.checkbox("Product Hunt")
+        st.checkbox("X / Twitter")
+
+# -----------------------------
+# MOMENTUM CHART
+# -----------------------------
+
+    with layout[1]:
+        fig = go.Figure()
+        for s in startups:
+            fig.add_trace(
+                go.Scatter(
+                    x=x,
+                    y=data[s],
+                    mode="lines+markers",
+                    name=s
+                )
+            )
+        fig.update_layout(
+            height=400,
+            margin=dict(l=10, r=10, t=10, b=10),
+            legend=dict(orientation="h")
+        )
+        st.plotly_chart(fig, width="stretch")
+
+st.divider()
+
+# -----------------------------
+# LOWER PANELS
+# -----------------------------
+
+lower = st.columns(2)
+
+# -----------------------------
+# EMERGING SIGNALS
+# -----------------------------
+
+with lower[0]:
+    st.subheader("Emerging Signals (Premium)")
+    if len(signals_df) > 0:
+        recent = signals_df.sort_values("timestamp", ascending=False).head(5)
+        for _,s in recent.iterrows():
+            row = st.columns([3,1,1])
+            with row[0]:
+                st.markdown(f"**{s['company']}**")
+            with row[1]:
+                st.success("Active")
+            with row[2]:
+                st.button("Chart", key=s["company"])
+    else:
+        st.markdown("No signals yet.")
+
+# -----------------------------
+# NEWLY DETECTED STARTUPS
+# -----------------------------
+
+with lower[1]:
+    st.subheader("Newly Detected Startups (Premium)")
+    if len(signals_df) > 0:
+        newest = signals_df.sort_values("timestamp", ascending=False).head(5)
+        for _,n in newest.iterrows():
+            row = st.columns([3,1])
+            with row[0]:
+                st.markdown(f"**{n['company']}**")
+            with row[1]:
+                st.button("Chart", key=n["company"]+"new")
+    else:
+        st.markdown("No newly detected startups yet.")
+
+st.divider()
+
+# -----------------------------
+# FOOTER METRICS BAR
+# -----------------------------
+
+footer = st.columns(3)
+with footer[0]:
+    st.metric("Tracked Startups", str(len(startups)), "+0")
+with footer[1]:
+    st.metric("Avg Momentum Score", "62", "+5")
+with footer[2]:
+    st.metric("Top Movers This Week", "12", "🔥")
